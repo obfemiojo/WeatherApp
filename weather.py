@@ -8,13 +8,14 @@ import requests
 import pytz
 from PIL import Image, ImageTk
 
-
+#basic window
 root = Tk()
 root.title("Weather App")
 root.geometry("890x470+300+200")
 root.configure(bg="#57adff")
 root.resizable(False, False)
 
+#
 def getWeather():
     city=textfield.get()
     
@@ -33,45 +34,47 @@ def getWeather():
     clock.config(text=current_time)
     
     #weather
-    api="https://api.openweathermap.org/data/2.5/onecall?lat="+str(location.latitude)+"&lon="+str(location.longitude)+"&units=metric&exclude=hourly&appid=c018e70ea7f6a85cd76d4b07ed868f1f"
+    api = "https://api.openweathermap.org/data/2.5/onecall?lat="+str(location.latitude)+"&lon="+str(location.longitude)+"&units=metric&exclude=hourly&appid="
     json_data = requests.get(api).json()
     
     #current
-    temp = json_data['current']['temp']
-    humidity = json_data['current']['humidity']
-    pressure = json_data['current']['pressure']
-    wind = json_data['current']['wind speed']
-    description = json_data['current']['weather'][0]['description']
-    print(temp)
-    print(humidity)
-    print(pressure)
-    print(wind)
-    print(description)
+    temp = json_data['temp']
+    humidity = json_data['humidity']
+    pressure = json_data['pressure']
+    wind = json_data['wind speed']
+    description = json_data['weather'][0]['description']
+    
+    t.config(text=(temp,"°C"))
+    h.config(text=(humidity,"%"))
+    p.config(text=(pressure,"hPa"))
+    w.config(text=(wind,"m/s"))
+    d.config(text=description)
 
 
 ##icon
 image_icon=PhotoImage(file="Images/logo.png")
 root.iconphoto(False,image_icon)
 
+#Round Box
 Round_box=PhotoImage(file="Images/Rounded Rectangle 1.png")
 Label(root,image=Round_box,bg="#57adff").place(x=30,y=110)
 
-    
+
 #label
 label1=Label(root,text="Temperature",font=('Helvetica',11), fg="white",bg="#203243")
-label1.place(x=50,y=120)
+label1.place(x=35,y=120)
 
 label2=Label(root,text="Humidity",font=('Helvetica',11), fg="white",bg="#203243")
-label2.place(x=50,y=140)
+label2.place(x=35,y=140)
 
 label3=Label(root,text="Pressure",font=('Helvetica',11), fg="white",bg="#203243")
-label3.place(x=50,y=160)
+label3.place(x=35,y=160)
 
 label4=Label(root,text="Wind Speed",font=('Helvetica',11), fg="white",bg="#203243")
-label4.place(x=50,y=180)
+label4.place(x=35,y=180)
 
 label5=Label(root,text="Description",font=('Helvetica',11), fg="white",bg="#203243")
-label5.place(x=50,y=200)
+label5.place(x=35,y=200)
 
 
 
@@ -125,6 +128,66 @@ timezone.place(x=600,y=20)
 
 long_lat=Label(root,font=("Helvetica",20),fg="white",bg="#57adff")
 long_lat.place(x=600,y=50)
+
+
+#thpwd
+t=Label(root,font=("Helvetica",11),fg="white",bg="#203243")
+t.place(x=150,y=120)
+h=Label(root,font=("Helvetica",11),fg="white",bg="#203243")
+h.place(x=150,y=140)
+p=Label(root,font=("Helvetica",11),fg="white",bg="#203243")
+p.place(x=150,y=160)
+w=Label(root,font=("Helvetica",11),fg="white",bg="#203243")
+w.place(x=150,y=180)
+d=Label(root,font=("Helvetica",11),fg="white",bg="#203243")
+d.place(x=150,y=200)
+
+
+#first cell
+firstframe=Frame(root,width=230,height=132,bg="white")
+firstframe.place(x=35,y=315)
+
+
+#second cell
+secondframe=Frame(root,width=70,height=115,bg="white")
+secondframe.place(x=305,y=325)
+
+
+#third cell
+thirdframe=Frame(root,width=70,height=115,bg="white")
+thirdframe.place(x=405,y=325)
+
+
+#fourth cell
+fourthframe=Frame(root,width=70,height=115,bg="white")
+fourthframe.place(x=505,y=325)
+
+
+#fifth cell
+fifthframe=Frame(root,width=70,height=115,bg="white")
+fifthframe.place(x=605,y=325)
+
+
+#sixth cell
+sixthframe=Frame(root,width=70,height=115,bg="white")
+sixthframe.place(x=705,y=325)
+
+
+#seventh cell
+firstframe=Frame(root,width=70,height=115,bg="white")
+firstframe.place(x=805,y=325)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
